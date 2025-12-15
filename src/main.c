@@ -3,13 +3,6 @@
 #include "main.h"
 #include "tiny-os-task.h"
 
-/*********************************************************************
- * @fn      main
- *
- * @brief   Main program.
- *
- * @return  none
- */
 int main(void)
 {
     Delay_Init();
