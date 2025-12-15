@@ -427,7 +427,7 @@ static void wait_dhcp(void *arg) {
     }
     else
     {
-        lwip_init_success_callback(&(WCH_NetIf.ip_addr)); /* notify callback about dhcp up / ip分配成功回调，用户在此增加关于网络进程的初始化函数 */
+        //lwip_init_success_callback(&(WCH_NetIf.ip_addr)); /* notify callback about dhcp up / ip分配成功回调，用户在此增加关于网络进程的初始化函数 */
     }
 }
 
