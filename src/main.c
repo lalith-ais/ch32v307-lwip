@@ -1,14 +1,29 @@
 #include "Debug/debug.h"
 #include "ch32v30x_eth.h"
 #include "main.h"
+#include "tiny-macro-os.h"
 #include "tiny-os-task.h"
+
+void systick_start(void) {
+
+    NVIC_SetPriority(SysTicK_IRQn,0xff);
+    NVIC_EnableIRQ(SysTicK_IRQn);
+    SysTick->CTLR= 0;
+    SysTick->SR  = 0;
+    SysTick->CNT = 0;
+    SysTick->CMP = SystemCoreClock / OS_SEC_TICKS;
+    SysTick->CTLR= 0xf;
+}
+
 
 int main(void)
 {
     Delay_Init();
     USART_Printf_Init(115200);
-
-    lwip_setup(); // initialise os related task
+	
+	systick_start();
+	OS_INIT_TASKS();
+    OS_TASK_EXIT_ANOTHER(os_lwip_timeouts); 
 
     printf("Enter main loop.\n");
     while(1) {
