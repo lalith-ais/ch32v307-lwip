@@ -2,7 +2,7 @@
 #include "ch32v30x_eth.h"
 #include "main.h"
 #include "tiny-macro-os.h"
-#include "tiny-os-task.h"
+#include "lwip_task.h"
 
 void systick_start(void) {
 
@@ -25,9 +25,9 @@ int main(void)
 	OS_INIT_TASKS();
     OS_TASK_EXIT_ANOTHER(os_lwip_timeouts); 
 
-    printf("Enter main loop.\n");
     while(1) {
-	os_task_loop();
-    }
+        OS_RUN_TASK(os_lwip);
+	    OS_RUN_TASK(os_lwip_timeouts);
+	}
 }
 
