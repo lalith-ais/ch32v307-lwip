@@ -10,4 +10,4 @@ enum
      */
 };
 
-void lwip_loop();
+void os_task_loop();

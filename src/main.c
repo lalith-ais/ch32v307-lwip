@@ -8,11 +8,11 @@ int main(void)
     Delay_Init();
     USART_Printf_Init(115200);
 
-    lwip_setup();
+    lwip_setup(); // initialise os related task
 
     printf("Enter main loop.\n");
     while(1) {
-	lwip_loop();
+	os_task_loop();
     }
 }
 

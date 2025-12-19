@@ -4,7 +4,7 @@
 #include "lwipsetup.h"
 
 // run the periodic tasks here
-void lwip_loop() {
+void os_task_loop() {
     OS_RUN_TASK(os_lwip);
     OS_RUN_TASK(os_lwip_timeouts);
 }
