@@ -51,7 +51,7 @@
 #include "lwip/ip4_frag.h"
 #include "lwip/etharp.h"
 #include "lwip/dhcp.h"
-#include "lwip/autoip.h"
+#include "lwip/acd.h"
 #include "lwip/igmp.h"
 #include "lwip/dns.h"
 #include "lwip/nd6.h"
@@ -60,7 +60,6 @@
 #include "lwip/dhcp6.h"
 #include "lwip/sys.h"
 #include "lwip/pbuf.h"
-#include "lwip_task.h"
 
 #if LWIP_DEBUG_TIMERNAMES
 #define HANDLER(x) x, #x
@@ -92,9 +91,9 @@ const struct lwip_cyclic_timer lwip_cyclic_timers[] = {
   {DHCP_COARSE_TIMER_MSECS, HANDLER(dhcp_coarse_tmr)},
   {DHCP_FINE_TIMER_MSECS, HANDLER(dhcp_fine_tmr)},
 #endif /* LWIP_DHCP */
-#if LWIP_AUTOIP
-  {AUTOIP_TMR_INTERVAL, HANDLER(autoip_tmr)},
-#endif /* LWIP_AUTOIP */
+#if LWIP_ACD
+  {ACD_TMR_INTERVAL, HANDLER(acd_tmr)},
+#endif /* LWIP_ACD */
 #if LWIP_IGMP
   {IGMP_TMR_INTERVAL, HANDLER(igmp_tmr)},
 #endif /* LWIP_IGMP */
@@ -114,9 +113,6 @@ const struct lwip_cyclic_timer lwip_cyclic_timers[] = {
   {DHCP6_TIMER_MSECS, HANDLER(dhcp6_tmr)},
 #endif /* LWIP_IPV6_DHCP6 */
 #endif /* LWIP_IPV6 */
-
-  {NET_LED_PERIOD_MSECS, HANDLER(net_led_tmr)},
-
 };
 const int lwip_num_cyclic_timers = LWIP_ARRAYSIZE(lwip_cyclic_timers);
 
@@ -361,6 +357,7 @@ sys_check_timeouts(void)
 
   /* Process only timers expired at the start of the function. */
   now = sys_now();
+
   do {
     struct sys_timeo *tmptimeout;
     sys_timeout_handler handler;

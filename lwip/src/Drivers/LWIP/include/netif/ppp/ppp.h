@@ -7,13 +7,13 @@
 * The authors hereby grant permission to use, copy, modify, distribute,
 * and license this software and its documentation for any purpose, provided
 * that existing copyright notices are retained in all copies and that this
-* notice and the following disclaimer are included verbatim in any
+* notice and the following disclaimer are included verbatim in any 
 * distributions. No written agreement, license, or royalty fee is required
 * for any of the authorized uses.
 *
 * THIS SOFTWARE IS PROVIDED BY THE CONTRIBUTORS *AS IS* AND ANY EXPRESS OR
 * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
 * IN NO EVENT SHALL THE CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
 * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
 * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
@@ -107,8 +107,8 @@ extern "C" {
 /*
  * The basic PPP frame.
  */
-#define PPP_HDRLEN  4   /* octets for standard ppp header */
-#define PPP_FCSLEN  2   /* octets for FCS */
+#define PPP_HDRLEN	4	/* octets for standard ppp header */
+#define PPP_FCSLEN	2	/* octets for FCS */
 
 /*
  * Values for phase.
@@ -266,9 +266,9 @@ typedef struct ppp_settings_s {
 #endif /* PAP_SUPPPORT */
 
 #if CHAP_SUPPORT
+#if PPP_SERVER
   u8_t  chap_timeout_time;       /* Timeout (seconds) for retransmitting req */
   u8_t  chap_max_transmits;      /* max # times to send challenge */
-#if PPP_SERVER
   u8_t  chap_rechallenge_time;   /* Time to wait for auth-req from peer */
 #endif /* PPP_SERVER */
 #endif /* CHAP_SUPPPORT */

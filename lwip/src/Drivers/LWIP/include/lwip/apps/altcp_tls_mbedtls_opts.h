@@ -52,7 +52,7 @@
 
 /** Configure debug level of this file */
 #ifndef ALTCP_MBEDTLS_DEBUG
-#define ALTCP_MBEDTLS_DEBUG                           LWIP_DBG_ON
+#define ALTCP_MBEDTLS_DEBUG                           LWIP_DBG_OFF
 #endif
 
 /** Configure lwIP debug level of the mbedTLS library */
@@ -98,6 +98,12 @@
 /** Maximum timeout for session tickets */
 #ifndef ALTCP_MBEDTLS_SESSION_TICKET_TIMEOUT_SECONDS
 #define ALTCP_MBEDTLS_SESSION_TICKET_TIMEOUT_SECONDS  (60 * 60 * 24)
+#endif
+
+/** Certificate verification mode: MBEDTLS_SSL_VERIFY_NONE, MBEDTLS_SSL_VERIFY_OPTIONAL (default),
+ * MBEDTLS_SSL_VERIFY_REQUIRED (recommended)*/
+#ifndef ALTCP_MBEDTLS_AUTHMODE
+#define ALTCP_MBEDTLS_AUTHMODE                        MBEDTLS_SSL_VERIFY_OPTIONAL
 #endif
 
 #endif /* LWIP_ALTCP */
