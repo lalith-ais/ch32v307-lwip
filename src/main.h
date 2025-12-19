@@ -4,3 +4,4 @@
 #include "Debug/debug.h"
 #include "ch32v30x_eth.h"
 #include "led_fast.h"
+#include "led_slow.h"

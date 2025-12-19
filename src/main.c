@@ -19,6 +19,7 @@ int main(void)
 	
 	systick_start();
 	led_fast_init();
+	led_slow_init();
 	
 	OS_INIT_TASKS();
     OS_TASK_EXIT_ANOTHER(os_lwip_timeouts); 
@@ -27,6 +28,7 @@ int main(void)
         OS_RUN_TASK(os_lwip);
 	    OS_RUN_TASK(os_lwip_timeouts);
 	    OS_RUN_TASK(led_fast_task);
+	    OS_RUN_TASK(led_slow_task);
 	    
 	}
 }
