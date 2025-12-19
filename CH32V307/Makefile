@@ -13,7 +13,7 @@ SRC_DIRS ?= ./src
 VENDOR_DIR ?= ./vendor
 ALL_SRC_DIRS := $(SRC_DIRS) $(VENDOR_DIR)/Core $(VENDOR_DIR)/Debug $(VENDOR_DIR)/Peripheral $(VENDOR_DIR)/Startup $(VENDOR_DIR)/User
 
-FLASH_PROG ?= minichlink-307
+FLASH_PROG ?= wlink 
 
 SRCS := $(shell find $(ALL_SRC_DIRS) -name *.cpp -or -name *.c -or -name *.S)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
@@ -56,7 +56,7 @@ $(BUILD_DIR)/$(TARGET_HEX): $(BUILD_DIR)/$(TARGET_EXEC)
 	@echo "Hex file created: $@"
 
 flash: $(BUILD_DIR)/$(TARGET_HEX)
-	$(FLASH_PROG) -a -K 64 -w $< 0x08000000 -b
+	$(FLASH_PROG)  --chip CH32V30X flash $(BUILD_DIR)/$(TARGET_HEX)
 
 usbflash: $(BUILD_DIR)/$(TARGET_EXEC)
 	wchisp flash $<
