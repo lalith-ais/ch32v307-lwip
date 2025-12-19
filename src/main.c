@@ -18,12 +18,16 @@ int main(void)
     USART_Printf_Init(115200);
 	
 	systick_start();
+	led_fast_init();
+	
 	OS_INIT_TASKS();
     OS_TASK_EXIT_ANOTHER(os_lwip_timeouts); 
 
     while(1) {
         OS_RUN_TASK(os_lwip);
 	    OS_RUN_TASK(os_lwip_timeouts);
+	    OS_RUN_TASK(led_fast_task);
+	    
 	}
 }
 
