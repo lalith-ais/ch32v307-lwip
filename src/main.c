@@ -1,8 +1,5 @@
-#include "Debug/debug.h"
-#include "ch32v30x_eth.h"
+
 #include "main.h"
-#include "tiny-macro-os.h"
-#include "lwip_task.h"
 
 void systick_start(void) {
 
